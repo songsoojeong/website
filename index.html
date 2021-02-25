@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title></title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script type="text/javascript" src="iscroll.js"></script>
+
+	<link type="text/css" href="index.css" rel="stylesheet" />
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+</head>
+<body>
+	<!--메인 인덱스-->
+	<div id="main_index">
+		<div class="myname" a id="top"></a>
+		<ul>
+			<li class="name">SONG SOOJEONG</li>
+			<li class="nameunder">PORTFOLIO</li>
+		</ul>
+		</div>
+	</div>
+	<div id="main_index">
+		<div class="iconnav">
+		<ul>
+			<li class="name"><a href="#aboutme_1"><img src="images/iconpeople.png" width="30px"></a></li>
+			<li class="name"><a href="#work_1"><img src="images/iconwork.png" width="30px"></a></li>
+			<li class="name"><a href="#info_1"><img src="images/iconinfo.png" width="30px"></a></li>
+		</ul>
+		</div>
+		<div class="upbotton">
+			<a href="#top"><img src="images/iconup.png" width="30px"></a>
+		</div>
+	</div>
+	<!--ABOUT ME-->
+	<div id="aboutme">
+		<div class="aboutme_ex" a id="aboutme_1"></a>
+				<img src="images/circle.png" width="200px">
+				<p class="big_big_sub">ABOUT ME</p>
+				<p>송수정</p>
+				<p>1990.07.07</p>
+				<p>thdtnwjd77@naver.com</p>
+				<br>			
+				<p class="big_sub">Education</p>
+				<p>2006.02  청원여자고등학교 졸업</p>
+				<p>2009.03  백석예술대학 관광학부 졸업</p>
+				<br>
+				<p class="big_sub">Certificate</p>
+				<p>GTQ (Graphic Technology Qualification) 1급</p>
+				<p>JPLT (Japanese-Language Proficiency Test) 1급</p>
+		</div>
+	</div>
+	<!--WORK-->
+	<div id="startport">
+		<div class="work" a id="work_1"></a>
+			<p>WORK</p>
+		</div>
+	</div>
+	<!--슬라이드-->
+	<div id="firstslide" class="slideBoxWrap">
+		<div class="sliderBox" class="article">
+			<div class="sliderBoxDesc">
+				<div id="carouselWrapper" class="description">
+					<div class="scrollerBox">
+						<ul>
+							<li><img src='images/allmenu.jpg' alt='' /></li>
+							<li><img src='images/starbucks.jpg' alt='' /></li>
+							<li><img src='images/trade.jpg' alt='' /></li>
+							<li><img src='images/ppt.jpg' alt='' /></li>
+							<li><img src='images/shop.jpg' alt='' /></li>
+						</ul>
+					</div>
+				</div>
+				<!--슬라이드버튼-->
+				<div class="sliderNav">
+					<a href='#' class='scrollBtn' id='0'>●</a>
+					<a href='#' class='scrollBtn' id='1'>●</a>
+					<a href='#' class='scrollBtn' id='2'>●</a>
+					<a href='#' class='scrollBtn' id='3'>●</a>
+					<a href='#' class='scrollBtn' id='4'>●</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--INFO-->
+	<div id="footer">
+		<div class="info" a id="info_1"></a>
+		<p><img src="images/iconthankyou.png" width="100px"></p>	
+		<p>감사합니다<br>
+		이 포트폴리오는 100% 개인 작업물입니다.</p>
+		</div>
+	</div>
+	<!--스크립트-->
+	<script type="text/javascript">
+	var eventLinkArray=new Array();
+	eventLinkArray[0]="";
+	eventLinkArray[1]="";
+	eventLinkArray[2]="";
+	eventLinkArray[3]="";
+	eventLinkArray[4]="";
+	eventLinkArray[5]="";
+	$(document).ready(function(){
+		jQuery.easing.def = "easeOutExpo";
+		var eventCount = $(".scrollerBox li").length;
+		var eventOpenFlag = true;
+		var autoScrollInterval = 4000;
+		
+		var totalCarousel = $(".scrollerBox li").length;
+		var currentEvent = 0;
+		var TimeMilliseconds = new Date();
+		var clickHandler = false;
+
+		$(".scrollerBox").css("width", ($(".slideBoxWrap").width()*totalCarousel)+"px");
+		$(".scrollerBox li").css("width", $(".slideBoxWrap").width()+"px");
+
+		if ((navigator.appName).indexOf("Microsoft")!=-1) {
+			$(".scrollBtn").click(function() {
+				selectNumber(this.id, true);
+			});
+			$("#0").css("color", "#000000");
+		} else {
+			var iscroll = new iScroll("carouselWrapper", {
+				snap: true,
+				momentum: false,
+				hScrollbar: false,
+				vScrollbar: false,
+				lockDirection: false,
+				onScrollEnd: function() {
+					$("#indicator li").each(function(i, node) {
+						if(i === iscroll.currPageX) {
+							$(node).addClass("active");
+						} else {
+							$(node).removeClass("active");
+						}
+					});
+
+					selectNumber(iscroll.currPageX, false);
+					clickHandler = true;
+				},
+				onScrollMove: function(e) {
+					clickHandler = false;
+				},
+				onTouchStart: function(e) {
+					clickHandler = true;
+					$("#carouselWrapper").mousemove(function() {
+						clickHandler = false;
+					});
+				},
+				onTouchEnd: function(e) {
+					if (clickHandler == true && (e.type == "mouseup" || e.type == "touchend")) {
+						linkToEvent();
+					}
+					$("#carouselWrapper").mousemove(null);
+				}
+			});
+
+			function linkToEvent() {
+				var TimeMillisecondsClick = new Date();
+				if (TimeMillisecondsClick.getTime() > TimeMilliseconds.getTime() + 500 ) {
+					TimeMilliseconds = new Date();
+
+					if (eventLinkArray[currentEvent] != "") {
+						location.href=eventLinkArray[currentEvent];
+					}
+				}
+			} 
+
+			$(".scrollBtn").click(function() {
+				iscroll.scrollToPage(this.id);
+			});
+
+			iscroll.scrollToPage(0);
+		}
+
+		$(".scrollerBox, .scrollBtn").mouseover(function() {
+			clearInterval(autoScrollIntervalId);
+			autoScrollIntervalId = null;
+		});
+
+		$(".scrollerBox, .scrollBtn").mouseout(function() {
+			if (autoScrollIntervalId == null) {
+				autoScrollIntervalId = setInterval(autoScroll, autoScrollInterval);
+			}
+		});
+
+		function autoScroll() {
+			if (currentEvent == totalCarousel-1) {
+				if ((navigator.appName).indexOf("Microsoft")!=-1) {
+					selectNumber(0, true);
+				} else {
+					iscroll.scrollToPage(0);
+				}
+			} else {
+				if ((navigator.appName).indexOf("Microsoft")!=-1) {
+					selectNumber(currentEvent+1, true);
+				} else {
+					iscroll.scrollToPage(currentEvent+1);
+				}
+			}
+		}
+
+		function selectNumber(newValue, motionFlag) {
+			if (currentEvent != newValue) {
+				currentEvent = Number(newValue);
+				var targetPosition = (currentEvent*-768);
+
+				$(".sliderNav a").each(function(i, node) {
+					if (i == newValue) {
+						$("#"+i).css("color", "#ffffff");
+					} else {
+						$("#"+i).css("color", "#B4B4B4");
+					}
+				});
+
+				if (motionFlag == true) {
+					$(".scrollerBox").animate( { left:targetPosition+"px" }, 500);
+				}
+			}
+		}
+
+		selectNumber(0, true);
+		var autoScrollIntervalId = setInterval(autoScroll, autoScrollInterval);
+	});
+	
+	</script>
+</body>
+</html>
