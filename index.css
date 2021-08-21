@@ -28,14 +28,16 @@ a:link, a:visited {
         width:50%;
         float:left;
         margin: 0;
-        height: 700px;
+        height: 800px;
         }
         #aboutme {
             width:100%;
             float:left;
             margin: 0;
-            background-color: #CCC;
-            opacity: 0.6;
+            background-color:#1f191b;
+            opacity: 0.5;
+            padding: 50px;
+            z-index: 0;
         }
         #startport {
             width:40%;
@@ -43,7 +45,7 @@ a:link, a:visited {
             margin: 0;
             } 
         #firstslide {
-            width:60%;
+            width:100%;
             float:left;
             margin: 0;
             }              
@@ -51,17 +53,25 @@ a:link, a:visited {
         list-style: none;
     }    
     .myname {
-        padding-top:150px;
+        padding:300px 0;
         color:#ffd000;
     }
     .name, .nameunder {
         font-family: 'Black Han Sans', sans-serif;
     }
+    #aboutme:hover {
+        background-image:url(images/m1.jpg);
+        opacity: 100%;
+        
+    }
+
+
+    
     .name {
-        font-size: 3.5em;
+        font-size: 5.5em;
     }
     .nameunder {
-        font-size: 2.7em;
+        font-size: 3.0em;
     }
     .iconnav {
         position: fixed;
@@ -91,11 +101,12 @@ a:link, a:visited {
         position: fixed;
         bottom:40px;
         right:2.7em;
+        z-index: 1 !important;
     }
     /*ABOUT ME*/
     .aboutme_ex {
         font-family: 'Noto Sans KR', sans-serif;
-        color: rgb(42, 15, 77);
+        color: white;
         text-align: center;
         line-height: 1;
         padding: 80px 10px;
@@ -968,7 +979,7 @@ a:link, a:visited {
     #footer {
         width:100%;
         clear: left;
-        background-image: url(images/bg2.jpg);
+        background-color: #ccc;
         margin: 0;
     }
 
